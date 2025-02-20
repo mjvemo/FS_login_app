@@ -1,3 +1,4 @@
+const { json } = require("express");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -17,7 +18,7 @@ app.use("api/auth", authRoutes);
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useUnifiedTopology: true,
   })
 
   .then(() => console.log("Conectado a MongoDB Atlas"))

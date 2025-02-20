@@ -34,11 +34,12 @@ router.post("/login", async (req, res) => {
     }
     // desencriptar password
     const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
-      return res.status(400).json({ message: "Credenciales Invalidas" });
+    if (!isMatch) {
+      return res.status(400).json({ message: "Credenciales inválidas" });
     }
-    // crear un token JWT
+    // Crear token JWT
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
     res.json({ token });
   } catch (error) {
     res.status(500).json({ error: error.message });
